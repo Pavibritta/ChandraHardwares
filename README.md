@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hardware eCommerce System
 
-## Getting Started
+## Overview
 
-First, run the development server:
+The Smart Hardware eCommerce System is a web-based platform designed to simplify the purchase of hardware products such as electrical items, plumbing tools, paints, cement, and agricultural equipment.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This system provides a unique project-based purchasing experience, allowing users to select a project (e.g., electrical work, plumbing) and automatically receive recommended products required for that task.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+###  User Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Browse all hardware products (paints, cement, electrical, plumbing, agriculture tools)
+* Search products using a smart search bar 
+* View products based on project requirements
+* Add products to cart and purchase
+* Login for personalized experience (order tracking, saved data)
+* View product details including:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  * Price
+  * Description
+  * Brand information
+* Explore products by brands
+* View blogs and activity updates related to hardware usage
 
-## Learn More
+###  Unique Feature – Project-Based Purchasing
 
-To learn more about Next.js, take a look at the following resources:
+* Users can select a project such as:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  * Electrical Work 
+  * Plumbing 
+  * Painting 
+  * Furniture Repair 
+* System automatically suggests required items
+* Users can add all suggested items to cart in one click
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This reduces confusion and improves user experience compared to traditional eCommerce websites.
 
-## Deploy on Vercel
+##  Landing Page Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 1. Hero Section
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Attractive banner
+* Title
+* Subtitle and call-to-action button
+
+### 2. Search Bar
+
+* Allows users to search products quickly
+
+### 3. Project Categories
+
+* Electrical
+* Plumbing
+* Painting
+* Furniture Repair
+
+### 5. Brands Section
+
+* Displays available brands
+* Each brand shows:
+
+  * Brand name
+  * Logo
+  * Available products under that brand
+
+### 6. Smart Recommendation Section
+
+* Helps users find required products easily
+
+### 7. Blogs / Activities Section
+
+* Tips for hardware usage
+* DIY project ideas
+* Maintenance guides
+
+### 8. Footer
+
+* Contact details
+* About information
+* Support links
+
+##  User Dashboard
+
+* Profile information
+* Order history
+* Order tracking status
+* Saved products (optional)
+
+
+##  Admin Features
+
+###  Admin Login
+
+* Secure admin authentication
+
+###  Product Management
+
+* Add / Edit / Delete products
+* Manage categories (Electrical, Plumbing, etc.)
+
+###  Brand Management
+
+* Add new brands
+* Assign products to brands
+* Manage brand details
+
+###  Order Management
+
+* View all orders
+* Update order status (Ordered, Shipped, Delivered)
+
+### User Management
+
+* View registered users
+* Monitor user activities
+
+###  Blog & Activity Management
+
+* Add blogs related to hardware usage
+* Share tips and guides for users
+
+##  Workflow
+
+1. User visits the website
+2. Browses products or selects a project
+3. Gets recommended items
+4. Adds items to cart
+5. Proceeds to checkout
+6. Places order
+7. Admin processes and updates order
+
+## Unique Selling Points
+
+* Project-based purchasing system
+* Guest checkout (no login required)
+* Brand-based product browsing
+* Blog and activity integration
+* Multi-category hardware availability (all-in-one platform)
+
+
+

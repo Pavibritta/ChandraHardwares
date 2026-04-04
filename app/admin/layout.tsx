@@ -1,6 +1,9 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono,Roboto,Poppins } from "next/font/google";
-import "./globals.css";
+import '../globals.css';
+import AdminWrapper from "../components/AdminWrapper";
+
 
 
 
@@ -17,19 +20,24 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({
+export default function AdminLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: any) {
+  
   return (
     <html
       lang="en"
       className={`${roboto.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <AdminWrapper>
+          {children}
+        </AdminWrapper>
         
-        {children}
+          
+          
+        
+        
         
         </body>
     </html>
