@@ -19,10 +19,9 @@ const brands = () => {
         "offers a comprehensive range of products including interior and exterior paints", },
     { id: 4, img: "/kiscol.png", brandName: "Kiscol", status: "Active", description:
         "offers a comprehensive range of products including interior and exterior paints", },
-    { id: 5, img: "/jkwhite.png", brandName: "JKWhite", status: "Active", description:
-        "offers a comprehensive range of products including interior and exterior paints", },
+   
     {
-      id: 6,
+      id: 5,
       img: "/tata-steel-logo.png",
       brandName: "Tata Steel",
       status: "Active",
