@@ -6,7 +6,7 @@ const Brands = () => {
     {id:2,img:"/cera.png"},
     {id:3,img:"/neycer.jpg"},
     {id:4,img:"/kiscol.png"},
-    {id:5,img:"/jkwhite.png"},
+    
     {id:6,img:"/tata-steel-logo.png"}
    ]
   return (

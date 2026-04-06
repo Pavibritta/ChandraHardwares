@@ -43,8 +43,8 @@ const Products = () => {
   ];
   return (
     <>
-      <h2 className="text-2xl font-bold mb-6 text-secondary mt-10 text-center" >Explore Our Products</h2>
-      <div className="flex gap-6 items-center justify-center p-10">
+      <h2 className="text-2xl font-bold mb-6 text-secondary mt-10  text-center" >Explore Our Products</h2>
+      <div className="flex gap-6 items-center justify-center p-10 mx-3">
         <div className="relative flex-1">
           <Search size={18} className="absolute  top-1/2 right-5 -translate-y-1/2 text-gray-700 cursor-pointer"/>
           <input type="search" placeholder="Search Products..." className="w-full outline-none shadow rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary px-3 py-2"/>
@@ -54,7 +54,7 @@ const Products = () => {
           <option value="">All Brands</option>
         </select>
       </div>
-<div className="grid md:grid-cols-4 grid-cols-2 gap-3 mb-6 p-3">
+<div className="grid md:grid-cols-4 grid-cols-2 gap-3 mb-6 p-3 mx-10">
   {products.map((product)=>(
         <div key={product.id} className=" cursor-pointer border border-gray-300 rounded-lg shadow hover:scale-105 transition-all ease-linear duration-300 flex items-center flex-col">
             <Image src={product.img} alt={product.productName} height={200} width={200} />

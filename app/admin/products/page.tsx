@@ -69,9 +69,9 @@ const products = [
 
   
     {/* Scroll only when needed */}
-    <div className="w-full max-w-full overflow-x-auto mt-5 shadow-sm rounded-lg border border-gray-100">
+    <div className="w-full max-w-full overflow-hidden mt-5 shadow-sm rounded-lg border border-gray-100">
 
-      <table className="min-w-[640px] w-full text-sm text-left">
+      <table className="max-w-[300px] w-full text-sm text-left ">
 
         {/* Header */}
         <thead className="bg-gray-100 text-gray-700 uppercase">
