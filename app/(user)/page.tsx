@@ -2,6 +2,7 @@ import Image from "next/image";
 import Categories from "../components/Categories";
 import Products from "../components/Products";
 import Brands from "../components/Brands";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -33,15 +34,20 @@ export default function Home() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+          <Link href="/shop">
           <button className="group bg-secondary hover:bg-secondary/90 text-white px-8 py-3.5 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
             Shop Now
             <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
           </button>
+          </Link>
           
-          <button className="group bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-3.5 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
+          <Link href="/categories">
+           <button className="group bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-3.5 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
             Explore Categories
             <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
           </button>
+          </Link>
+         
         </div>
 
       
