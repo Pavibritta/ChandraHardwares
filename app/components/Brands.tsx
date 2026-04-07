@@ -12,7 +12,7 @@ const Brands = () => {
     <>
     <h2 className="text-2xl font-bold mb-6 text-secondary mt-10 text-center" >Our Trusted Brands</h2>
 
-     <div className="grid md:grid-cols-4 grid-cols-2 gap-10 p-5 max-w-6xl mx-auto">
+     <div className="grid md:grid-cols-4 grid-cols-2 gap-10 p-5 max-w-8xl mx-auto">
   {brands.map((brand) => (
     <div key={brand.id} className="flex justify-center">
       <Image

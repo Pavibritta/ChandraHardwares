@@ -1,0 +1,109 @@
+[
+  {
+    "id": 1,
+    "category": "Electricals",
+    "productName": "Finolex Copper House Wire (1.5 sq mm)",
+    "img": "/Wires_Cables.jpg",
+    "description": "High-quality copper wire with fire-resistant insulation, ideal for home electrical wiring.",
+    "price": "₹950 / 90m coil"
+  },
+  {
+    "id": 2,
+    "category": "Electricals",
+    "productName": "Anchor Roma Modular Switch (6A)",
+    "img": "/Switches.jpg",
+    "description": "Stylish modular switch with smooth operation and long-lasting performance.",
+    "price": "₹120 per piece"
+  },
+  {
+    "id": 3,
+    "category": "Electricals",
+    "productName": "Luminous Zelio+ 1100 Home Inverter",
+    "img": "/Inverters.jpg",
+    "description": "Smart inverter with LCD display and long backup support.",
+    "price": "₹6500"
+  },
+  {
+    "id": 4,
+    "category": "Electricals",
+    "productName": "Bajaj New Shakti Neo 15L Water Heater",
+    "img": "/Geysers.jpg",
+    "description": "Durable water heater with fast heating technology.",
+    "price": "₹7500"
+  },
+
+  {
+    "id": 5,
+    "category": "Painting",
+    "productName": "Asian Paints Royale Emulsion",
+    "img": "/Painting.png",
+    "description": "Premium interior paint with smooth finish and long-lasting color.",
+    "price": "₹1800 / 10L"
+  },
+  {
+    "id": 6,
+    "category": "Painting",
+    "productName": "Berger Easy Clean Paint",
+    "img": "/Painting.png",
+    "description": "Stain-resistant paint ideal for homes with kids.",
+    "price": "₹1500 / 10L"
+  },
+  {
+    "id": 7,
+    "category": "Painting",
+    "productName": "Nippon Paint Weatherbond",
+    "img": "/Painting.png",
+    "description": "Exterior paint with weather protection and waterproofing.",
+    "price": "₹2000 / 10L"
+  },
+
+  {
+    "id": 8,
+    "category": "Plumbing",
+    "productName": "PVC Water Pipe (1 inch)",
+    "img": "/Plumbing.png",
+    "description": "Durable PVC pipe suitable for water supply systems.",
+    "price": "₹120 / meter"
+  },
+  {
+    "id": 9,
+    "category": "Plumbing",
+    "productName": "Bathroom Shower Set",
+    "img": "/Plumbing.png",
+    "description": "Modern chrome shower with adjustable water flow.",
+    "price": "₹850"
+  },
+  {
+    "id": 10,
+    "category": "Plumbing",
+    "productName": "Wash Basin Tap (Steel)",
+    "img": "/Plumbing.png",
+    "description": "High-quality stainless steel tap with long durability.",
+    "price": "₹600"
+  },
+
+  {
+    "id": 11,
+    "category": "Construction",
+    "productName": "ACC Cement (50kg)",
+    "img": "/Construction.png",
+    "description": "High-strength cement ideal for all construction needs.",
+    "price": "₹420 / bag"
+  },
+  {
+    "id": 12,
+    "category": "Construction",
+    "productName": "TMT Steel Bars",
+    "img": "/Construction.png",
+    "description": "Corrosion-resistant steel rods for strong structures.",
+    "price": "₹65 / kg"
+  },
+  {
+    "id": 13,
+    "category": "Construction",
+    "productName": "Clay Bricks",
+    "img": "/Construction.png",
+    "description": "High-quality red bricks for durable construction.",
+    "price": "₹8 / piece"
+  }
+]
