@@ -68,7 +68,7 @@ console.log("Product category:", p.category);
 
         {/* Category Dropdown */}
         <select
-          onChange={handleCategoryChange}
+          onChange={(e)=>handleCategoryChange}
           value={selectedCategory || ""}
           className="shadow rounded-lg border border-gray-200 px-3 py-2"
         >
