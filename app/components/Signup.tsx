@@ -44,7 +44,7 @@ const Signup = () => {
 
   return Object.keys(newErrors).length === 0;
 };
-const handleSubmit=async(e)=>{
+const handleSubmit=async(e: React.ChangeEvent<HTMLInputElement>)=>{
 e.preventDefault()
 if (!validateForm()){
   return
@@ -66,7 +66,7 @@ setUsers({fullName:"",
     confirmPassword:""})
 console.log(users)
 }
-const handleChange=(e)=>{
+const handleChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
 const {name,value}=e.target
 
 setUsers((prev)=>({
