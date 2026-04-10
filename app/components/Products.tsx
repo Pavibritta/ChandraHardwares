@@ -32,7 +32,7 @@ console.log("Product category:", p.category);
   return matchCategory && matchSearch;
 });
   // ✅ Handle category change
-  const handleCategoryChange = (e) => {
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     if (value) {
