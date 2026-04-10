@@ -32,7 +32,7 @@ console.log("Product category:", p.category);
   return matchCategory && matchSearch;
 });
   // ✅ Handle category change
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
 
     if (value) {
@@ -68,7 +68,7 @@ console.log("Product category:", p.category);
 
         {/* Category Dropdown */}
         <select
-          onChange={(e)=>handleCategoryChange}
+          onChange={handleCategoryChange}
           value={selectedCategory || ""}
           className="shadow rounded-lg border border-gray-200 px-3 py-2"
         >
