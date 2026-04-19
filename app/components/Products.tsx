@@ -4,11 +4,12 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import products from "../data/products.json";
 import { useSearchParams, useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 
 const Products = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-
+const { user } = useAuth();
   const selectedCategory = searchParams.get("category");
 
   const [search, setSearch] = useState("");
@@ -110,9 +111,23 @@ console.log("Product category:", p.category);
                     {product.price}
                   </h3>
 
-                  <button className="bg-secondary text-white px-5 py-2 rounded-lg font-semibold">
-                    Add To Cart
-                  </button>
+                  <div className="flex justify-between items-center gap-2 mt-3">
+
+  {/* ✅ View Product (always visible) */}
+  <button
+    onClick={() => router.push(`/shop/${product.id}`)}
+    className="bg-primary text-white px-3 py-2 rounded-lg text-sm"
+  >
+    View
+  </button>
+
+  {/* ✅ Add to Cart (only if logged in) */}
+  {user && (
+    <button className="bg-secondary text-white px-3 py-2 rounded-lg text-sm">
+      Add To Cart
+    </button>
+  )}
+</div>
                 </div>
               </div>
             </div>

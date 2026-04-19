@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono,Roboto,Poppins } from "next/font/google";
-import "./globals.css";
-
-
-
-const roboto=Roboto({
-  subsets:['latin'],
-  display:"swap"
-})
-
+import { Roboto, } from "next/font/google";
+import './globals.css'
+import LayoutWrapper from "./components/LayoutWrapper";
+import AuthProvider from "./context/AuthContext";
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: "swap"
+});
 
 
 export const metadata: Metadata = {
@@ -23,14 +22,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
     <html
       lang="en"
       className={`${roboto.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <AuthProvider>
+           <LayoutWrapper>
+            {children}
+            </LayoutWrapper> 
         
-        {children}
         
+        </AuthProvider>
+       
         </body>
     </html>
   );
