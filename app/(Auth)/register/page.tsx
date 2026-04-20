@@ -1,6 +1,5 @@
 import React from 'react'
-import Signup from '@/app/components/Signup'
-
+import Signup from 'app/components/Signup'
 const register = () => {
   return (
     <>
