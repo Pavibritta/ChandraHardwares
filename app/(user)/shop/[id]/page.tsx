@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import products from '../../../data/products.json'
 import Image from "next/image";
-import { useAuth } from "@/app/context/AuthContext";
+import { useAuth } from "app/context/AuthContext";
 
 const ProductDetail = () => {
   const { id } = useParams();

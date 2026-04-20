@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { useForm } from "react-hook-form";
 import {email, z} from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "../../../shared/validationschemas/auth.schema.js";
+import { loginSchema } from "@shared/validationschemas/auth.schema";
 
 export default function Login() {
   
