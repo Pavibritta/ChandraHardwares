@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { email,z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {signupSchema} from '@shared/validationschemas/auth.schema'
+import {signupSchema} from "../shared/validationschemas/auth.schema"
 
 const Signup = () => {
 
