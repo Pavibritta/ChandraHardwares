@@ -3,7 +3,7 @@ import Categories from "./components/Categories";
 import Products from "./components/Products";
 import Brands from "./components/Brands";
 import Link from "next/link";
-
+export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <>
