@@ -19,14 +19,21 @@ import brandRoutes from "./routes/brandRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import addressRoutes from "./routes/addressRoute.js";
 import orderRoutes from "./routes/orderRoutes.js";
-import dashboardRoutes from "./routes/dashboardRoutes.js"
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000", // local frontend
+      "https://chandra-hardwares-d145n0ojh-pavibrittas-projects.vercel.app", // 🔥 replace this
+    ],
+    credentials: true,
+  }),
+);
 app.use(cookieParser());
-const PORT = 5000;
-
+const PORT = process.env.PORT || 5000;
 app.use("/", authRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/products", productRoutes);
@@ -34,7 +41,7 @@ app.use("/brands", brandRoutes);
 app.use("/cart", cartRoutes);
 app.use("/address", addressRoutes);
 app.use("/orders", orderRoutes);
-app.use("/dashboard",dashboardRoutes)
+app.use("/dashboard", dashboardRoutes);
 app.listen(PORT, async () => {
   console.log(`The Server is running at port http://localhost:${PORT}`);
   await defaultAdmin();
