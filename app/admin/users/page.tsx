@@ -1,119 +1,141 @@
-import React from 'react'
-import { Search,Pencil, Trash2 } from "lucide-react";
+"use client";
+import React, { useEffect, useState } from "react";
+import { Search, Pencil, Trash2 } from "lucide-react";
 
-import Image from 'next/image';
+type User = {
+  _id: string;
+  fullName: string;
+  email: string;
+  createdAt: string;
+};
 
-const users = () => {
-const users = [
-    {
-      id: 1,
-      user: "Pavithra",
-      email: "pavithrarajase1@gmail.com",
-      status: "Active",
-      joinedDate:
-        "04/03/2026",   
-    },
-    {
-      id: 2,
-      user: "Priya",
-      email: "priya@gmail.com",
-      status: "Active",
-      joinedDate:
-        "04/03/2026", 
-    },
-    {
-      id: 3,
-      user: "Kumar",
-      email: "kumar@gmail.com",
-      status: "Active",
-      joinedDate:
-        "04/03/2026", 
-    },
-    {
-      id: 4,
-      user: "Ramya",
-      email: "ramya@gmail.com",
-      status: "Active",
-      joinedDate:
-        "04/03/2026", 
-    },
-  ];
+const Users = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+const [search, setSearch] = useState("");
+const filteredUsers = users.filter((user) => {
+  const name = user.fullName || "";
+  const email = user.email || "";
+
   return (
-    <>
-    <div className='mt-20 bg-gray-50 px-3 py-2'>
-      <div className='flex justify-between'>
-        <h1 className='font-bold text-xl text-primary'>Users</h1>
-        <div className="relative  mx-auto w-full max-w-xl">
-                <Search size={18} className="absolute  top-1/2 right-5 -translate-y-1/2 text-gray-700 cursor-pointer"/>
-                <input type="search" placeholder="Search Users..." className="w-full outline-none shadow rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary px-3 py-2 max-w-xl"/>
-              </div>
+    name.toLowerCase().includes(search.toLowerCase()) ||
+    email.toLowerCase().includes(search.toLowerCase())
+  );
+});
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("/api/users");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
+
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          setUsers(data);
+        } else {
+          setUsers([data]);
+        }
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  
+    return (
+  <div className="mt-20 bg-gray-50 min-h-screen px-4 py-6">
+
+    {/* Header */}
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <h1 className="text-2xl font-bold text-primary">Users</h1>
+
+      {/* Search */}
+      <div className="relative w-full max-w-md">
+        <Search
+          size={18}
+          className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500"
+        />
+        <input
+  type="text"
+  placeholder="Search users..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  className="w-full px-4 py-2 rounded-lg border border-gray-200 shadow-sm focus:ring-2 focus:ring-primary outline-none"
+/>
       </div>
-      
-      
-<div className="w-full mt-5">
-  <div className="shadow-sm rounded-lg border border-gray-100">
-    
-    {/* Responsive wrapper */}
-    <div className="w-full overflow-hidden">
-      
-      <table className="w-full min-w-[300px]">
-        
-        <thead className="bg-gray-100 text-gray-700 text-xs sm:text-sm uppercase">
+    </div>
+
+    {/* Table Card */}
+    <div className="bg-white rounded-xl shadow border border-gray-100 overflow-hidden">
+
+      <table className="w-full text-sm text-left">
+
+        {/* Table Header */}
+        <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
           <tr>
-            <th className="px-3 sm:px-4 py-2 sm:py-3 text-left">User</th>
-            <th className="px-3 sm:px-4 py-2 sm:py-3 text-left">Email</th>
-            <th className="px-3 sm:px-4 py-2 sm:py-3 text-left">Status</th>
-            <th className="px-3 sm:px-4 py-2 sm:py-3 text-left">Joined</th>
-            <th className="px-3 sm:px-4 py-2 sm:py-3 text-left">Actions</th>
+            <th className="px-4 py-3">Name</th>
+            <th className="px-4 py-3">Email</th>
+            <th className="px-4 py-3">Status</th>
+            <th className="px-4 py-3">Joined</th>
+            
           </tr>
         </thead>
 
-        <tbody className="text-gray-600 text-xs sm:text-sm">
-          {users.map((user) => (
+        {/* Table Body */}
+        <tbody className="text-gray-600">
+          {filteredUsers.map((user) => (
             <tr
-              key={user.id}
-              className="border-t hover:bg-secondary/20 transition"
+              key={user._id}
+              className="border-t hover:bg-gray-50 transition"
             >
-              <td className="px-3 sm:px-4 py-2 sm:py-3">
-                {user.user}
+              <td className="px-4 py-3 font-medium">
+                {user.fullName}
               </td>
 
-              <td className="px-3 sm:px-4 py-2 sm:py-3 whitespace-nowrap">
+              <td className="px-4 py-3">
                 {user.email}
               </td>
 
-              <td className="px-3 sm:px-4 py-2 sm:py-3 whitespace-nowrap">
-                {user.status}
+              {/* Status */}
+              <td className="px-4 py-3">
+                <span className="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">
+                  Active
+                </span>
               </td>
 
-              <td className="px-3 sm:px-4 py-2 sm:py-3 whitespace-nowrap">
-                {user.joinedDate}
+              {/* Date */}
+              <td className="px-4 py-3">
+                {new Date(user.createdAt).toLocaleDateString()}
               </td>
 
-              <td className="px-3 sm:px-4 py-2 sm:py-3 flex gap-2">
-                <button className="bg-primary rounded p-2">
-                  <Pencil size={14} className="text-secondary" />
-                </button>
-
-                <button className="bg-primary rounded p-2">
-                  <Trash2 size={14} className="text-secondary" />
-                </button>
-              </td>
+             
             </tr>
           ))}
         </tbody>
 
       </table>
+
+      {/* Empty State */}
+     {filteredUsers.length === 0 && (
+  <p className="text-center py-6 text-gray-500">
+    No users found
+  </p>
+)}
     </div>
   </div>
-</div>
-       
+);
+  
+};
 
-    </div>
-    
-      
-    </>
-  )
-}
-
-export default users
+export default Users;

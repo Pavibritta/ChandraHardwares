@@ -14,7 +14,7 @@ const LayoutWrapper = ({ children }: any) => {
     <>
       <Navbar />
       {children}
-      {!isAdmin && <Footer />} {/* ✅ Hide footer for admin */}
+      {!isAdmin && <Footer />} 
     </>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Image from "next/image";
 import {
   ShoppingCart,
@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
+import { useSearchParams } from "next/navigation";
 
 const Navbar = () => {
   const pathName = usePathname();
@@ -22,6 +23,11 @@ const Navbar = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const searchParams = useSearchParams();
+const searchQuery = searchParams.get("search") || "";
+useEffect(() => {
+  setSearch(searchQuery);
+}, [searchQuery]);
 
   // ✅ Role checks
   const isAdmin = user?.role === "admin";
@@ -86,7 +92,11 @@ const Navbar = () => {
               Logout
             </button>
           </div>
+           {/* Mobile Toggle */}
+        
         </nav>
+
+        
       </header>
     );
   }
@@ -124,19 +134,23 @@ const Navbar = () => {
 
         {/* 🔍 Search Bar */}
         <div className="hidden md:flex items-center">
-          <input
-            type="text"
-            value={search}
-            onChange={handleSearch}
-            placeholder="Search products..."
-            className="px-4 py-2 rounded border outline-none w-64 bg-white"
-          />
+         <input
+  type="search"
+  placeholder="Search Products..."
+  className="w-full px-4 py-2 rounded border outline-none border-white placeholder:text-white text-white"
+  value={search}
+  onChange={(e) => {
+    const value = e.target.value;
+    setSearch(value);
+    router.push(`/shop?search=${value}`);
+  }}
+/>
         </div>
 
         {/* Right Section */}
         <div className="hidden md:flex items-center gap-6 text-secondary">
 
-          {/* ✅ USER */}
+          {/*  USER */}
           {isUser && (
             <>
               <span className="font-semibold">Hi, {user.name}</span>
@@ -155,7 +169,7 @@ const Navbar = () => {
             </>
           )}
 
-          {/* ✅ GUEST */}
+          {/*  GUEST */}
           {isGuest && (
             <Link href="/login">
               <LogIn />
@@ -191,15 +205,18 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Search */}
-          <input
-            type="text"
-            value={search}
-            onChange={handleSearch}
-            placeholder="Search products..."
-            className="w-full px-4 py-2 rounded border outline-none"
-          />
-
+         
+<input
+  type="search"
+  placeholder="Search Products..."
+  className="w-full px-4 py-2 rounded border outline-none"
+  value={search}
+  onChange={(e) => {
+    const value = e.target.value;
+    setSearch(value);
+    router.push(`/shop?search=${value}`);
+  }}
+/>
           {/* Actions */}
           <div className="flex flex-col items-center gap-5 border-t pt-5">
 

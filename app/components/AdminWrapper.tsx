@@ -14,36 +14,36 @@ const AdminWrapper = ({ children }: any) => {
   const { user } = useAuth(); // ✅ get user
 
   useEffect(() => {
-    // ⛔ Not logged in
+    //  Not logged in
     if (!user) {
       router.push("/login");
       return;
     }
 
-    // ⛔ Not admin
+    //  Not admin
     if (user.role !== "admin") {
       router.push("/"); // redirect normal user
     }
   }, [user]);
 
-  // ⛔ Hide layout on login page
+  //  Hide layout on login page
   if (pathname === "/login") {
     return <>{children}</>;
   }
 
-  // ⏳ Wait until user is loaded
+  //  Wait until user is loaded
   if (!user) {
     return <div className="p-10 text-center">Loading...</div>;
   }
 
-  // ⛔ If not admin, block UI
+  //  If not admin, block UI
   if (user.role !== "admin") {
     return null;
   }
 
   return (
     <div className="flex flex-col min-h-full">
-      <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Navbar  />
 
       <div className="flex">
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />

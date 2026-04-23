@@ -1,46 +1,130 @@
-import React from 'react'
-import Link from 'next/link'
-import { Search ,Pencil, Trash2 } from 'lucide-react'
-import Image from 'next/image'
+"use client";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { Search, Pencil, Trash2 } from "lucide-react";
+import Image from "next/image";
 
-const categories = () => {
-   const categories = [{ id: 1, img: "/Electrical.png", name: "Electrical" },
-    { id: 2, img: "/Painting.png", name: "Painting" },
-    { id: 3, img: "/Plumbing.png", name: "Plumbing" },
-    { id: 4, img: "/Construction.png", name: "Construction" }
-  ];
+type Category = {
+  _id: string;
+  name: string;
+  image: string;
+};
+
+const Categories = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+const [search, setSearch] = useState("");
+const filteredCategories = categories.filter((item) =>
+  item.name.toLowerCase().includes(search.toLowerCase())
+);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/categories");
+        const data = await res.json();
+
+        console.log("data:", data);
+
+        // safe handling
+        setCategories(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await fetch(`/api/categories/${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Deleted successfully");
+
+        setCategories((prev) =>
+          prev.filter((item) => item._id !== id)
+        );
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div>
-       <div className='flex justify-between mt-30'>
-        <h1 className='font-bold text-xl text-primary'>Categories</h1>
-        <div className="relative mx-auto w-full max-w-xl">
-                <Search size={18} className="absolute  top-1/2 right-5 -translate-y-1/2 text-gray-700 cursor-pointer"/>
-                <input type="search" placeholder="Search Category..." className="w-full outline-none shadow rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary px-3 py-2 max-w-xl"/>
-              </div>
-        <Link href="/admin/addcategory">
-        <button className='bg-secondary text-white rounded shadow px-3 py-2 font-bold hover:bg-secondary/80 transition-all ease-in-out duration-300 cursor-pointer'>+ Add Category</button>
-        </Link>
-        
-      </div>
-      
-      <div className="grid  md:grid-cols-2  grid-cols-1 gap-10 max-w-8xl w-full p-10">
-       {categories.map((item) => (
-        <div key={item.id} className="relative cursor-pointer">
-          <Image
-            src={item.img}
-            alt={item.name}
-            width={500}
-            height={500}
-            className="rounded-lg "
-          />
-          <h1 className="absolute left-5 bottom-4 right-5 font-bold text-white text-2xl">{item.name}</h1>
-          <Pencil size={18} className='absolute right-15 top-4  font-bold text-white text-2xl'/>
-          <Trash2 size={18} className='absolute right-3 top-4  font-bold text-white text-2xl'/>
-        </div>
-      ))}
-       </div>
-    </div>
-  )
-}
+   <div className="mt-20 bg-gray-50 px-4 py-6 min-h-screen">
+  
+  {/* HEADER */}
+  <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+    <h1 className="text-2xl font-bold text-primary">Categories</h1>
 
-export default categories
+    <div className="relative w-full max-w-md">
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+      <input
+        type="search"
+        placeholder="Search Category..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary outline-none"
+      />
+    </div>
+
+    <Link href="/admin/addcategory">
+      <button className="bg-secondary text-white px-4 py-2 rounded-lg font-semibold hover:bg-secondary/80 transition">
+        + Add Category
+      </button>
+    </Link>
+  </div>
+
+  {/* GRID */}
+  <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {filteredCategories.map((item) => (
+      <div
+        key={item._id}
+        className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden group"
+      >
+        {/* IMAGE */}
+        <div className="relative h-48">
+          <Image
+            src={item.image}
+            alt={item.name}
+            fill
+            className="object-cover"
+          />
+
+          {/* ACTION BUTTONS */}
+          <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition">
+            <Link href={`/admin/addcategory?id=${item._id}`}>
+              <button className="bg-white p-2 rounded shadow">
+                <Pencil size={14} />
+              </button>
+            </Link>
+
+            <button
+              onClick={() => handleDelete(item._id)}
+              className="bg-white p-2 rounded shadow"
+            >
+              <Trash2 size={14} />
+            </button>
+          </div>
+        </div>
+
+        {/* CONTENT */}
+        <div className="p-4">
+          <h2 className="font-semibold text-lg text-gray-800 truncate">
+            {item.name}
+          </h2>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+  );
+};
+
+export default Categories;

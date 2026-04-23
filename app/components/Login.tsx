@@ -14,21 +14,14 @@ export default function Login() {
   
   const router = useRouter();
   const {login}=useAuth()
-  // const loginSchema=z.object({
-  //   email:z.string().nonempty("Email is required").email("Enter a valid email address"),
-  //   password:z.string().min(6,"Minimum 6 characters required")
-
-  // })
+  
  type LoginForm=z.infer<typeof loginSchema>
 const {register,handleSubmit,formState:{errors},}=useForm<LoginForm>({
   resolver:zodResolver(loginSchema)
 })
   
 
-  const onSubmit = async (formData :LoginForm ) => {
-   
-
-   
+  const onSubmit = async (formData :LoginForm ) => { 
 
     try {
       const res = await fetch("/api/login", {

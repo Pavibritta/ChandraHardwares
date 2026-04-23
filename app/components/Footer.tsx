@@ -4,105 +4,96 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <>
-      <div className="grid md:grid-cols-4 grid-cols-2 gap-3 w-full max-w-8xl bg-primary">
-        <div className="px-10 py-5">
+    <footer className="bg-primary text-white mt-10">
+      <div className="max-w-7xl mx-auto px-6 py-10 grid gap-10 md:grid-cols-4 grid-cols-2">
+
+        {/* Logo + About */}
+        <div>
           <Image
             src="/chandra hardware finals copy 1.png"
             alt="logo"
             height={50}
             width={150}
           />
-          <p className="text-white">
-            Your trusted hardware shop for all construction needs.
+          <p className="mt-4 text-sm text-gray-200 leading-6">
+            Your trusted hardware shop for construction, electrical,
+            and plumbing needs. Quality products at the best price.
           </p>
         </div>
 
-        <div className="px-10 py-5">
-          <h1 className="text-white">Quick Links</h1>
-          <ul className="mt-5 text-secondary font-bold flex flex-col gap-5">
-            <li>
-              <Link
-                href="/"
-                className="hover:bg-secondary/15 px-3 py-2 rounded transition-all ease-in-out duration-300"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/categories"
-                className="hover:bg-secondary/15 px-3 py-2 rounded transition-all ease-in-out duration-300"
-              >
-                Categories
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/shop"
-                className="hover:bg-secondary/15 px-3 py-2 rounded transition-all ease-in-out duration-300"
-              >
-                Shop
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/brands"
-                className="hover:bg-secondary/15 px-3 py-2 rounded transition-all ease-in-out duration-300"
-              >
-                Brands
-              </Link>
-            </li>
+        {/* Quick Links */}
+        <div>
+          <h2 className="text-lg font-semibold mb-4 border-b border-white/20 pb-2">
+            Quick Links
+          </h2>
+          <ul className="flex flex-col gap-3 text-sm">
+            {[
+              { name: "Home", path: "/" },
+              { name: "Categories", path: "/categories" },
+              { name: "Shop", path: "/shop" },
+              { name: "Brands", path: "/brands" },
+            ].map((item, i) => (
+              <li key={i}>
+                <Link
+                  href={item.path}
+                  className="hover:text-secondary transition-all duration-300"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
-        <div className="px-10 py-5">
-          <h1 className="text-white">Categories</h1>
-          <ul className="mt-5 text-secondary font-bold flex flex-col gap-5">
-            <li>
-              <Link
-                href="/"
-                className="hover:bg-secondary/15 px-3 py-2 rounded transition-all ease-in-out duration-300"
-              >
-                Electricals
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/"
-                className="hover:bg-secondary/15 px-3 py-2 rounded transition-all ease-in-out duration-300"
-              >
-                Plumbing
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/"
-                className="hover:bg-secondary/15 px-3 py-2 rounded transition-all ease-in-out duration-300"
-              >
-                Painting
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/"
-                className="hover:bg-secondary/15 px-3 py-2 rounded transition-all ease-in-out duration-300"
-              >
-                Construction
-              </Link>
-            </li>
+        {/* Categories */}
+        <div>
+          <h2 className="text-lg font-semibold mb-4 border-b border-white/20 pb-2">
+            Categories
+          </h2>
+          <ul className="flex flex-col gap-3 text-sm">
+            {["Electricals", "Plumbing", "Painting", "Construction"].map(
+              (cat, i) => (
+                <li key={i}>
+                  <Link
+                    href="/shop"
+                    className="hover:text-secondary transition-all duration-300"
+                  >
+                    {cat}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
 
-        <div className="px-10 py-5">
-          <h1 className="text-white">Contact</h1>
-          <div className="font-bold text-secondary mt-5">
-            No 7/367,Main Road, Venkateswarapuram, Tirunelveli-627854,
-            Tamilnadu.
+        {/* Contact */}
+        <div>
+          <h2 className="text-lg font-semibold mb-4 border-b border-white/20 pb-2">
+            Contact
+          </h2>
+          <p className="text-sm text-gray-200 leading-6">
+            No 7/367, Main Road,
+            <br />
+            Venkateswarapuram,
+            <br />
+            Tirunelveli - 627854,
+            <br />
+            Tamil Nadu, India
+          </p>
+
+          {/* Optional phone/email */}
+          <div className="mt-4 text-sm">
+            <p>📞 +91 98765 43210</p>
+            <p>📧 support@chandrahardware.com</p>
           </div>
         </div>
       </div>
-    </>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-white/20 text-center py-4 text-sm text-gray-300">
+        © {new Date().getFullYear()} Chandra Hardware. All rights reserved.
+      </div>
+    </footer>
   );
 };
 

@@ -1,55 +1,71 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import { Search,Pencil, Trash2 } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 
 const products = () => {
-const products = [
-    {
-      id: 1,
-      categorie: "Electricals",
-      productName: "Finolex Copper House Wire (1.5 sq mm)",
-      img: "/Wires_Cables.jpg",
-      description:
-        "High-quality copper wire with fire-resistant insulation, ideal for home electrical wiring.",
-      price: "₹950 / 90m coil",
-      brand:"Finolex",
-      stock:100,
-    },
-    {
-      id: 2,
-      categorie: "Electricals",
-      productName: "Anchor Roma Modular Switch (6A)",
-      img: "/Switches.jpg",
-      description:
-        "Stylish modular switch with smooth operation and long-lasting performance, ideal for modern homes.",
-      price: "₹120 per piece",
-      brand:"Anchor Roma",
-      stock:500,
-    },
-    {
-      id: 3,
-      categorie: "Electricals",
-      productName: "Luminous Zelio+ 1100 Home Inverter",
-      img: "/Inverters.jpg",
-      description:
-        "Smart inverter with LCD display, ideal for homes, supports single battery and provides long backup.",
-      price: "₹6500",
-      brand:"Luminous",
-      stock:50,
-    },
-    {
-      id: 4,
-      categorie: "Electricals",
-      productName: "Bajaj New Shakti Neo 15L Water Heater",
-      img: "/Geysers.jpg",
-      description:
-        "Durable storage water heater with glass-lined tank and fast heating technology.",
-      price: "₹7500",
-      brand:"Bajaj",
-      stock:20,
-    },
-  ];
+
+
+type Products = {
+  _id: string,
+  name: string,
+  image: string,
+  category: {
+    _id: string,
+    name: string
+  },
+  brand: string,
+  stock: number,
+  price: number,
+  description: string
+}
+const [products,setProducts]=useState<Products[]>([])
+const [search, setSearch] = useState("");
+const [debouncedSearch, setDebouncedSearch] = useState("");
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setDebouncedSearch(search);
+  }, 300);
+
+  return () => clearTimeout(timer);
+}, [search]);
+
+const filteredProducts = products.filter((p) =>
+  p.name.toLowerCase().includes(debouncedSearch.toLowerCase())
+);
+useEffect(()=>{
+const fetchProducts=async ()=>{
+  try{
+    const res=await fetch('/api/products')
+    const data=await res.json()
+    console.log("products",data)
+    setProducts(data)
+  }catch(error){
+console.log(error)
+  }
+}
+fetchProducts()
+},[])
+
+//delete product
+const handleDelete = async (id: string) => {
+  try {
+    const res = await fetch(`/api/products/${id}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      alert("Deleted successfully");
+
+      // refresh list
+      setProducts((prev) => prev.filter((p) => p._id !== id));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
   return (
     <>
     <div className='mt-20 bg-gray-50 px-3 py-2'>
@@ -57,7 +73,13 @@ const products = [
         <h1 className='font-bold text-xl text-primary'>Products</h1>
         <div className="relative  mx-auto w-full max-w-xl">
                 <Search size={18} className="absolute  top-1/2 right-5 -translate-y-1/2 text-gray-700 cursor-pointer"/>
-                <input type="search" placeholder="Search Products..." className="w-full outline-none shadow rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary px-3 py-2 max-w-xl"/>
+                <input
+  type="search"
+  placeholder="Search Products..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  className="w-full outline-none shadow rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary px-3 py-2 max-w-xl"
+/>
               </div>
         <Link href='/admin/addproduct'>
         <button className='bg-secondary text-white rounded shadow px-3 py-2 font-bold hover:bg-secondary/80 transition-all ease-in-out duration-300 cursor-pointer'>+ Add Product</button>
@@ -88,14 +110,14 @@ const products = [
 
         {/* Body */}
         <tbody className="text-gray-600">
-          {products.map((product) => (
-            <tr key={product.id} className="border-t hover:bg-secondary/10">
+          {filteredProducts.map((product) => (
+            <tr key={product._id} className="border-t hover:bg-secondary/10">
 
               {/* Image */}
               <td className="px-4 py-3 lg:whitespace-nowrap">
                 <Image
-                  src={product.img}
-                  alt={product.productName}
+                  src={product.image}
+                  alt={product.name}
                   width={40}
                   height={40}
                   className="rounded object-cover"
@@ -104,12 +126,12 @@ const products = [
 
               {/* Name */}
               <td className="px-4 py-3 whitespace-nowrap">
-                {product.productName}
+                {product.name}
               </td>
 
               {/* Category */}
               <td className="px-4 py-3 whitespace-nowrap">
-                {product.categorie}
+                {product.category?.name}
               </td>
 
               {/* Brand */}
@@ -124,18 +146,19 @@ const products = [
 
               {/* Price */}
               <td className="px-4 py-3 whitespace-nowrap font-semibold">
-                {product.price}
+                ₹{product.price}
               </td>
 
               {/* Actions */}
               <td className="px-4 py-3">
                 <div className="flex gap-2">
-                  <button className="bg-primary rounded p-2">
-                    <Pencil size={15} className="text-secondary" />
-                  </button>
-
-                  <button className="bg-primary rounded p-2">
-                    <Trash2 size={15} className="text-secondary" />
+                 <Link href={`/admin/addproduct?id=${product._id}`}>
+  <button className="bg-primary rounded p-2">
+    <Pencil size={15} className="text-secondary" />
+  </button>
+</Link>
+                  <button className="bg-primary rounded p-2 cursor-pointer" onClick={() => handleDelete(product._id)}>
+                    <Trash2 size={15} className="text-secondary"  />
                   </button>
                 </div>
               </td>
@@ -143,7 +166,13 @@ const products = [
             </tr>
           ))}
         </tbody>
-
+{filteredProducts.length === 0 && (
+  <tr>
+    <td colSpan={7} className="text-center py-5 text-gray-500">
+      No products found
+    </td>
+  </tr>
+)}
       </table>
     </div>
  
