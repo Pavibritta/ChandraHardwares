@@ -33,7 +33,7 @@ app.use(
   }),
 );
 app.use(cookieParser());
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT ||10000;
 app.use("/", authRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/products", productRoutes);
