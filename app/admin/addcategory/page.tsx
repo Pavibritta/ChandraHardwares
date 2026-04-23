@@ -80,9 +80,11 @@ type CategotyForm=z.infer<typeof categorySchema>
   }}
             className="w-full  px-5 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary outline-none text-sm sm:text-base mb-4 text-white"
           />
-          {errors.image && (
-            <p className="text-red-500 text-sm">{errors.image.message}</p>
-          )}
+         {errors.image?.message && (
+  <p className="text-red-500 text-sm">
+    {errors.image.message as string}
+  </p>
+)}
           <input
             type="text"
             placeholder="Enter Category Name"
