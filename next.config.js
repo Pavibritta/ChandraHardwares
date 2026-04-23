@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://localhost:5000/:path*",
+        destination: "https://chandrahardwares.onrender.com/:path*",
       },
     ];
   },
