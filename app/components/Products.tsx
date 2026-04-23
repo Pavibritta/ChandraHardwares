@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
-export const dynamic = "force-dynamic";
+
 const Products = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
