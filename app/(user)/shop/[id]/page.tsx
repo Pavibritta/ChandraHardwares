@@ -76,8 +76,8 @@ console.log("product",product)
             ₹ {product.price}
           </h2>
 
-          {/* ✅ Add to Cart only if user */}
-          {user ? (
+          
+          {/* {user ? (
             <button className="bg-secondary text-white px-6 py-3 rounded-lg">
               Add To Cart
             </button>
@@ -85,7 +85,7 @@ console.log("product",product)
             <p className="text-red-500">
               Please login to add to cart
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </div>
