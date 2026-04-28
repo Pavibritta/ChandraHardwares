@@ -2,16 +2,17 @@
 
 import { useParams } from "next/navigation";
 import { useEffect,useState } from "react";
-import products from '../../../data/products.json'
 import Image from "next/image";
 import { useAuth } from "app/context/AuthContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 const ProductDetail = () => {
   const params = useParams();
 const [loading, setLoading] = useState(true);
   console.log("params:", params);
-
+const router = useRouter();
   const id = params?.id; // ✅ correct
 
   console.log("id", id);
@@ -92,6 +93,15 @@ if (loading) {
 };
   return (
     <div className="p-10 max-w-5xl mx-auto mt-30">
+      <div className="mb-6">
+  <button
+    onClick={() => router.back()}
+    className="flex items-center gap-2 text-gray-600 hover:text-primary transition"
+  >
+    <ArrowLeft size={20} />
+    <span className="font-medium">Back</span>
+  </button>
+</div>
       <div className="grid md:grid-cols-2 gap-10">
 
         {/* Image */}
