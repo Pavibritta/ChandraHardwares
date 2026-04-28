@@ -68,7 +68,7 @@ const handleDelete = async (id: string) => {
 };
   return (
     <>
-    <div className='mt-20 bg-gray-50 px-3 py-2'>
+    <div className='mt-20 bg-gray-50 px-3 py-2 w-full'>
       <div className='flex justify-between'>
         <h1 className='font-bold text-xl text-primary'>Products</h1>
         <div className="relative  mx-auto w-full max-w-xl">

@@ -79,7 +79,7 @@ const brands = () => {
 };
   return (
     <>
-      <div className="mt-20 bg-gray-50 px-3 py-2">
+      <div className="w-full mt-20 bg-gray-50 px-3 py-2">
         <div className="flex justify-between">
           <h1 className="font-bold text-xl text-primary">Brands</h1>
           <div className="relative  mx-auto w-full max-w-xl">
